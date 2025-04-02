@@ -1,59 +1,95 @@
-# Blog
+# Blog em Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+Este é um pequeno projeto de blog desenvolvido em Angular para fins de aprendizado.
 
-## Development server
+## Tecnologias Utilizadas
+- Angular
+- TypeScript
+- HTML
+- CSS
 
-To start a local development server, run:
+## Estrutura do Projeto
+O blog possui os seguintes componentes:
+- `app-menu-bar`: Barra de menu superior.
+- `app-menu-title`: Título da seção.
+- `app-big-card`: Cartão principal com o artigo em destaque.
+- `app-small-card`: Cartões menores para outros artigos.
 
-```bash
-ng serve
+## Lógica Implementada
+Para criar os textos e imagens exibidos no blog, utilizei a parte lógica do Angular, aplicando conceitos como:
+
+- **Binding de Dados**: Uso da interpolação (`{{ title }}`) para exibir dinamicamente o título do blog.
+- **Inputs (@Input)**: Implementado no `MenuTitleComponent` para receber valores dinâmicos, como o título da seção.
+- **Componentização**: Separação da estrutura do blog em componentes reutilizáveis, como `app-big-card` e `app-small-card`.
+- **Passagem de Propriedades**: Utilizada no `app-big-card`, onde as informações como `photoCover`, `cardTitle` e `cardDescription` são passadas dinamicamente via propriedades do componente.
+- **Templates HTML Dinâmicos**: Os componentes utilizam templates dinâmicos para exibir os dados de forma organizada e reutilizável.
+
+### Exemplo de Código
+#### Estrutura HTML Principal
+```html
+<header>
+    <app-menu-bar></app-menu-bar>
+</header>
+<app-menu-title title="Valorant News"></app-menu-title>
+
+<div class="container_articles">
+    <div class="article_main">
+        <app-big-card 
+            photoCover="https://static.valorantzone.gg/news/2025/01/13173426/Aspas-MIBR-2.jpg"
+            cardTitle="ASPAS CHEGA AO MIBR PARA 2025"
+            cardDescription="O MIBR oficializou a reformulação no elenco de Valorant, com Erick 'aspas' como principal contratação para a temporada 2025. Campeão mundial com a LOUD em 2022 e com passagem pela latino-americana Leviatán neste ano, aspas volta a trabalhar com o treinador norte-americano Daniel 'fRoD'.">
+        </app-big-card>
+    </div>
+</div>
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+#### Exemplo de Componente Angular (`MenuTitleComponent`)
+```typescript
+import { Component, Input } from '@angular/core';
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+@Component({
+  selector: 'app-menu-title',
+  templateUrl: './menu-title.component.html',
+  styleUrl: './menu-title.component.css'
+})
+export class MenuTitleComponent {
+  @Input() title: string = "";
+}
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+#### Template HTML do `MenuTitleComponent`
+```html
+<div class="menu_title_container">
+    <hr>
+    <h1>{{ title }}</h1>
+    <hr>
+</div>
 ```
 
-## Building
+## Como Rodar o Projeto
+1. Clone este repositório:
+   ```sh
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   ```
+2. Acesse a pasta do projeto:
+   ```sh
+   cd nome-do-projeto
+   ```
+3. Instale as dependências:
+   ```sh
+   npm install
+   ```
+4. Rode o projeto:
+   ```sh
+   ng serve
+   ```
+5. Acesse no navegador: `http://localhost:4200`
 
-To build the project run:
+## Melhorias Futuras
+- Implementar sistema de comentários.
+- Adicionar API para gerenciamento de artigos.
+- Melhorar o design e responsividade.
 
-```bash
-ng build
-```
+## Autor
+Desenvolvido por [Seu Nome](https://github.com/seu-usuario).
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
