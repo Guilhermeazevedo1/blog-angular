@@ -90,6 +90,4 @@ export class MenuTitleComponent {
 - Adicionar API para gerenciamento de artigos.
 - Melhorar o design e responsividade.
 
-## Autor
-Desenvolvido por [Seu Nome](https://github.com/seu-usuario).
 
